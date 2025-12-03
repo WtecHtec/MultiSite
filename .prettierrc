@@ -1,0 +1,11 @@
+{
+    "printWidth": 100,          // 每行最大长度
+    "tabWidth": 2,              // tab 宽度
+    "useTabs": false,           // 是否使用 tab，false = 空格
+    "semi": true,               // 语句末尾是否加分号
+    "singleQuote": true,        // 使用单引号
+    "trailingComma": "all",     // 尾随逗号
+    "bracketSpacing": true,     // 对象字面量括号间空格
+    "arrowParens": "always",    // 箭头函数参数括号
+    "endOfLine": "lf"           // 换行符
+  }
