@@ -16,6 +16,9 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import { applyLayout, createAiView } from './WebViewProvider';
 import { ipcHandleReadDirectory, ipcHandleReadFile, ipcHandleSlectFolder } from './Ipcs';
+import { ipcHandleWorkflow } from './Ipcs/workflow';
+import { ipcHandleExecution } from './Ipcs/execution';
+import { ipcHandleRunner } from './Ipcs/runner';
 
 class AppUpdater {
   constructor() {
@@ -120,7 +123,10 @@ const createWindow = async () => {
 
   ipcHandleSlectFolder(mainWindow);
   ipcHandleReadDirectory(mainWindow);
-  ipcHandleReadFile(mainWindow)
+  ipcHandleReadFile(mainWindow);
+  ipcHandleWorkflow();
+  ipcHandleExecution();
+  ipcHandleRunner(mainWindow);
 
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
@@ -141,7 +147,7 @@ app.on('window-all-closed', () => {
 
 app
   .whenReady()
-  .then(() => {
+  .then(async () => {
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
